@@ -16,5 +16,7 @@ public class Controlroom extends World
         super(80,80,10); 
         setBackground("cell.jpg");
         addObject(new MenuBar(), 39, 75);
+        addObject(new Fire(), getWidth()/2, getHeight()/2);
+        addObject(new Extinguish(), getWidth()/2, getHeight()/2);
     }
 }

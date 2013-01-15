@@ -1,4 +1,7 @@
 #BlueJ class context
-comment0.params=
-comment0.target=void\ act()
-numComments=1
+comment0.params=world
+comment0.target=void\ addedToWorld(greenfoot.World)
+comment0.text=\r\n\ When\ the\ object\ is\ added\ to\ the\ world,\ set\ it's\ image\ to\ the\ animation.\r\n
+comment1.params=
+comment1.target=void\ act()
+numComments=2
