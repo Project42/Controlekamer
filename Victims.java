@@ -8,8 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Victims extends Calamities
 {
 
-    public void act() 
+    // Animatie
+    public void addedToWorld(World world)
     {
-        // Spawnt
-    }    
+        setImage("peoplethatneedtobeevacuated.gif");
+    }
+    
+    public void act()
+    {
+        // SPAWNT ERGENS
+        super.act(); 
+    }
 }
