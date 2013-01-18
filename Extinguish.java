@@ -5,9 +5,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * Project 42
  */
+
 public class Extinguish extends Intervention
 {
-
     public void addedToWorld(World world)
     {
         setImage("firefighter.gif");
@@ -17,7 +17,14 @@ public class Extinguish extends Intervention
     {
         // Toont sprite, na een aantal seconden verdwijnt de class (en gaat er een leven weg)
         // Verwijdert brand en blijft aanwezig voor een aantal seconden
-        super.act(); //You MUST keep this in your act method for your animation to work!
+        checkClicked();
+        super.act();
     }
-
+    
+    public void checkClicked() {
+        if (Greenfoot.mouseClicked(this)) {
+            Controlroom world = (Controlroom)getWorld();
+            world.setSelectedCharacter(Controlroom.Character.FIREFIGHTER);
+        }
+    }
 }

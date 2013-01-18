@@ -22,10 +22,41 @@ import java.util.ArrayList;
 
 public abstract class Calamities extends Actor
 {
+    private int spawnTimer = 0;  
+    private int spawnLocationX = 0;
+    private int spawnLocationY = 0;
+    
+    public void setSpawnTimer(int newSpawnTimer) {
+        spawnTimer = newSpawnTimer;
+    }
+    
+    public int getSpawnTimer() {
+       return spawnTimer;
+    }
 
-
-
-
+    public void spawnLocation (int x) {
+        if (x==1) {
+            spawnLocationX = 12;
+            spawnLocationY = 20;
+            chooseObject((int)(Math.random()*((2-0)+1)));
+        }
+        if (x==2) {
+            spawnLocationX = 40;
+            spawnLocationY = 30;
+            chooseObject((int)(Math.random()*((2-0)+1)));
+        }
+    }
+    
+    public void chooseObject (int x) {
+        Controlroom world = (Controlroom)getWorld();
+        if (x==1) {
+            world.addObject(new Fire(), spawnLocationX, spawnLocationY);
+        }
+        else if (x==2) {
+            world.addObject(new Victims(),spawnLocationX, spawnLocationY);
+        }
+    }
+        
     /** CODE VOOR GIF ANIMATIES */
     
     
@@ -78,6 +109,7 @@ public abstract class Calamities extends Actor
         if(time+delay[currentIndex]<=System.currentTimeMillis()) {
             nextFrame();
         }
+        spawnTimer++;
     }
     
     /**
