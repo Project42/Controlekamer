@@ -35,20 +35,30 @@ public abstract class Calamities extends Actor
     }
 
     public void spawnLocation (int x) {
-        if (x==1) {
-            spawnLocationX = 12;
-            spawnLocationY = 20;
-            chooseObject((int)(Math.random()*((2-0)+1)));
+        
+        Actor calamities = getOneObjectAtOffset(12,20,Calamities.class);
+        if (calamities == null)
+        {
+             if (x==1) {
+                spawnLocationX = 12;
+                spawnLocationY = 20;
+                chooseObject((int)(Math.random()*((2-0)+1)));
+            }
         }
-        if (x==2) {
-            spawnLocationX = 40;
-            spawnLocationY = 30;
-            chooseObject((int)(Math.random()*((2-0)+1)));
+        
+        Actor calamities2 = getOneObjectAtOffset(40,30,Calamities.class);
+        if (calamities2 == null)
+        {
+            if (x==2) {
+                spawnLocationX = 40;
+                spawnLocationY = 30;
+                chooseObject((int)(Math.random()*((2-0)+1)));
+            }
         }
     }
     
     public void chooseObject (int x) {
-        Controlroom world = (Controlroom)getWorld();
+        ControlroomWorld world = (ControlroomWorld)getWorld();
         if (x==1) {
             world.addObject(new Fire(), spawnLocationX, spawnLocationY);
         }

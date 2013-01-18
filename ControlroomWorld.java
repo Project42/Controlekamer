@@ -8,7 +8,7 @@ import greenfoot.*;
  * 0.01
  */
 
-public class Controlroom extends World
+public class ControlroomWorld extends World
 {
     public Score scoreCounter;
     public enum Character {
@@ -28,7 +28,7 @@ public class Controlroom extends World
         return selectedCharacter;
     }
 
-    public Controlroom()
+    public ControlroomWorld()
     {    
         super(80,80,10); 
         setBackground("cell.jpg");
@@ -48,5 +48,9 @@ public class Controlroom extends World
      */
     private void prepare()
     {
+    }
+    
+    public Score getScoreCounter() {
+        return scoreCounter;
     }
 }

@@ -30,15 +30,16 @@ public class Fire extends Calamities
     
     public void checkClicked() {
         if (Greenfoot.mouseClicked(this)) {
-            Controlroom world = (Controlroom)getWorld();
-            if (world.getSelectedCharacter() == Controlroom.Character.FIREFIGHTER) {
+            ControlroomWorld world = (ControlroomWorld)getWorld();
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.FIREFIGHTER) {
                 world.removeObject(this);
+                world.getScoreCounter().add(50);
             }
         }
     }
      
     public void spawnSomewhere(int difficulty) {
-        Controlroom world = (Controlroom)getWorld();
+        ControlroomWorld world = (ControlroomWorld)getWorld();
         if (getSpawnTimer()>difficulty) {
             spawnLocation((int)(Math.random()*((2-0)+1)));
             setSpawnTimer(0);

@@ -23,8 +23,8 @@ public class Extinguish extends Intervention
     
     public void checkClicked() {
         if (Greenfoot.mouseClicked(this)) {
-            Controlroom world = (Controlroom)getWorld();
-            world.setSelectedCharacter(Controlroom.Character.FIREFIGHTER);
+            ControlroomWorld world = (ControlroomWorld)getWorld();
+            world.setSelectedCharacter(ControlroomWorld.Character.FIREFIGHTER);
         }
     }
 }

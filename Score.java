@@ -27,12 +27,18 @@ public class Score extends Actor {
     }
 
     public void act() {
-
+        if(value < target) {
+            value++;
+            updateImage();
+        }
+        else if(value > target) {
+            value--;
+            updateImage();
+        }
     }
 
-    public void add(int totalScore) {
-        Controlroom world = (Controlroom)getWorld();
-        target += totalScore;
+    public void add(int score) {
+        target += score;
     }
 
     public int getValue() {
