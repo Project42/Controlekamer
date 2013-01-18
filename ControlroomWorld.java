@@ -31,7 +31,7 @@ public class ControlroomWorld extends World
     public ControlroomWorld()
     {    
         super(80,80,10); 
-        setBackground("cell.jpg");
+        setBackground("background.png");
         addObject(new MenuBar(), 39, 75);
         addObject(new Fire(), getWidth()/2, getHeight()/2);
         addObject(new Extinguish(), getWidth()/2+30, getHeight()/2);
