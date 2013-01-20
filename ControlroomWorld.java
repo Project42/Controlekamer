@@ -11,6 +11,9 @@ import greenfoot.*;
 public class ControlroomWorld extends World
 {
     public Score scoreCounter;
+    private int spawnTimer = 0;  
+    private int spawnLocationX = 0;
+    private int spawnLocationY = 0;
     public enum Character {
         FIREFIGHTER,
         POLICE_SHUTOFF,
@@ -42,10 +45,6 @@ public class ControlroomWorld extends World
         addObject(scoreCounter, 6, 74);
     }
     
-    /**
-     * Prepare the world for the start of the program. That is: create the initial
-     * objects and add them to the world.
-     */
     private void prepare()
     {
     }
@@ -53,4 +52,51 @@ public class ControlroomWorld extends World
     public Score getScoreCounter() {
         return scoreCounter;
     }
+    
+    public void act() {
+        spawnTimer++;
+        spawnSomewhere(100);
+    }
+    
+    public void spawnLocation() {
+        spawnLocationX = (int)(Math.random()*((64-0)+12));
+        spawnLocationY = (int)(Math.random()*((31-0)+12));
+        
+        if (getObjectsAt(spawnLocationX,spawnLocationY,Calamities.class)==null) 
+            {
+                if(spawnLocationX > 3 && spawnLocationY > 5) 
+                {
+                        chooseObject((int)(Math.random()*((2-0)+1)));
+                }
+             }
+        }
+        
+    public void chooseObject (int x) {
+        if (x==1) 
+        {
+            addObject(new Fire(), spawnLocationX, spawnLocationY);
+        }
+        
+        else if (x==2) 
+        {
+            addObject(new Victims(),spawnLocationX, spawnLocationY);
+        }
+        setSpawnTimer(0);
+    }
+    
+    public void setSpawnTimer(int newSpawnTimer) {
+        spawnTimer = newSpawnTimer;
+    }
+    
+    public int getSpawnTimer() {
+       return spawnTimer;
+    }
+        
+    public void spawnSomewhere(int difficulty) {
+        if (getSpawnTimer()>difficulty) 
+        {
+            spawnLocation();
+        }
+    }
+
 }
