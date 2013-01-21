@@ -62,7 +62,7 @@ public class ControlroomWorld extends World
         spawnLocationX = (int)(Math.random()*((64-0)+12));
         spawnLocationY = (int)(Math.random()*((31-0)+12));
         
-        if (getObjectsAt(spawnLocationX,spawnLocationY,Calamities.class)==null) 
+        if (getObjectsAt(spawnLocationX,spawnLocationY,Calamities.class).isEmpty()) 
             {
                 if(spawnLocationX > 3 && spawnLocationY > 5) 
                 {
