@@ -76,7 +76,7 @@ public class ControlroomWorld extends World
         {
             if(spawnLocationX > 3 && spawnLocationY > 5) 
             {
-                    chooseObject((int)(Math.random()*((2-0)+1)));
+                    chooseObject((int)(Math.random()*((4-0)+1)));
             }
          }
     }
@@ -89,7 +89,15 @@ public class ControlroomWorld extends World
         
         else if (x==2) 
         {
-            addObject(new Victims(),spawnLocationX, spawnLocationY);
+            addObject(new Victims(), spawnLocationX, spawnLocationY);
+        }
+        else if (x==3)
+        {
+            addObject(new FloodStreet(), spawnLocationX, spawnLocationY);
+        }
+        else if (x==4)
+        {
+            addObject(new Thief(),  spawnLocationX, spawnLocationY);
         }
         setSpawnTimer(0);
     }

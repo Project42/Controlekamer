@@ -8,7 +8,6 @@ import greenfoot.*;
 
 public class Fire extends Calamities
 {    
-    private int expireTimer;
     public void addedToWorld(World world)
     {
         setImage("fire.gif");
@@ -20,7 +19,6 @@ public class Fire extends Calamities
         super.act();
         checkClicked(); 
         checkIfIExpire(300);
-        expireTimer++;
     }
     
     public void checkClicked() {
@@ -33,21 +31,17 @@ public class Fire extends Calamities
                 world.getScoreCounter().add(50);
             }
         }
-    }      
+    }
     
-    public void checkIfIExpire(int difficulty) 
-    {
+    public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
-       world.setCalamityTimer(expireTimer);
 
-       if (world.getCalamityTimer() > difficulty) 
+       if (getExpireTimer() > difficulty) 
        {
            world.removeObject(this);
            world.loseLife();
+           setExpireTimer(0);
        }
-       
-       
-
     }
 }
    

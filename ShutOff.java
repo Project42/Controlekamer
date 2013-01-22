@@ -7,8 +7,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ShutOff extends Intervention
 {
-    public void act() 
+    public void addedToWorld(World world)
     {
-        // Plaatst twee hekjes om de desbetreffende straat heen oid.
-    }    
+        setImage("firefighter.gif");
+    }
+    
+    public void act()
+    {
+        // Toont sprite, na een aantal seconden verdwijnt de class (en gaat er een leven weg)
+        // Verwijdert brand en blijft aanwezig voor een aantal seconden
+        checkClicked();
+        super.act();
+    }
+    
+    public void checkClicked() {
+        if (Greenfoot.mouseClicked(this)) {
+            ControlroomWorld world = (ControlroomWorld)getWorld();
+            world.setSelectedCharacter(ControlroomWorld.Character.FIREFIGHTER);
+        }
+    }
 }

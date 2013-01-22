@@ -22,6 +22,19 @@ import java.util.ArrayList;
 
 public abstract class Calamities extends Actor
 {   
+    private int expireTimer;
+    
+    public void setExpireTimer(int newExpireTimer) 
+    {
+       expireTimer = newExpireTimer;
+    }
+    
+    public int getExpireTimer() 
+    {
+        return expireTimer;
+    }
+    
+    
     /** CODE VOOR GIF ANIMATIES */
     
     
@@ -71,9 +84,11 @@ public abstract class Calamities extends Actor
      */
     public void act()
     {
-        if(time+delay[currentIndex]<=System.currentTimeMillis()) {
+        if(time+delay[currentIndex]<=System.currentTimeMillis()) 
+        {
             nextFrame();
         }
+        expireTimer++;
     }
     
     /**

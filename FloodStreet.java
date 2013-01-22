@@ -1,15 +1,15 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * DEZE MENSEN GAAN DOOD EN ALS JE ZE NIET RED DAN IS DAT PECH VOOR ZE.
+ * Auto's botsen op elkaar bij straten waar teveel water is.
  * 
  * Project 42
  */
-public class Victims extends Calamities
+public class FloodStreet extends Calamities
 {    
     public void addedToWorld(World world)
     {
-        setImage("peoplethatneedtobeevacuated.gif");
+        setImage("flood.gif");
     }
     
     public void act()
@@ -24,7 +24,7 @@ public class Victims extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_EVACUATE)
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_SHUTOFF)
             {
                 world.removeObject(this);
                 world.getScoreCounter().add(50);
@@ -34,7 +34,6 @@ public class Victims extends Calamities
     
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
-       world.setCalamityTimer(getExpireTimer());
 
        if (getExpireTimer() > difficulty) 
        {
