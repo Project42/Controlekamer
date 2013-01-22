@@ -11,9 +11,16 @@ import greenfoot.*;
 public class ControlroomWorld extends World
 {
     public Score scoreCounter;
-    private int spawnTimer = 0;  
+    private int spawnTimer = 0; 
+    public int calamityTimer = 0;
     private int spawnLocationX = 0;
     private int spawnLocationY = 0;
+    public int countLifes = 4;
+    
+    private Life life1;
+    private Life life2;
+    private Life life3;
+    
     public enum Character {
         FIREFIGHTER,
         POLICE_SHUTOFF,
@@ -47,6 +54,9 @@ public class ControlroomWorld extends World
     
     private void prepare()
     {
+        addObject(life1 = new Life(), 77, 74);
+        addObject(life2 = new Life(), 73, 74);
+        addObject(life3 = new Life(), 69, 74);
     }
     
     public Score getScoreCounter() {
@@ -99,4 +109,28 @@ public class ControlroomWorld extends World
         }
     }
 
+    public void setCalamityTimer(int newCalamityTimer) {
+        calamityTimer = newCalamityTimer;
+    }
+    
+    public int getCalamityTimer() {
+        return calamityTimer;
+    }
+    
+    public void loseLife() {
+        countLifes--;
+    if (countLifes == 3) {
+           removeObject(life3);
+        }
+       
+        else if (countLifes == 2) {
+            removeObject(life2);
+        }
+        
+        else if (countLifes == 1) {
+            // Game Over
+            System.out.println("WAAAAHHHH VERLOREN!");
+            removeObject(life1);
+        }
+    }
 }
