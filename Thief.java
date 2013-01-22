@@ -11,5 +11,6 @@ public class Thief extends Calamities
     public void act() 
     {
         // Blijft aanwezig voor een aantal seconden en daarna gaat er een leven weg.
-    }    
+        }   
+    
 }
