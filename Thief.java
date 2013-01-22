@@ -9,7 +9,7 @@ public class Thief extends Calamities
 {
     public void addedToWorld(World world)
     {
-        setImage("flood.gif");
+        setImage("Thief_idle_left_withbox.png");
     }
     
     public void act()
