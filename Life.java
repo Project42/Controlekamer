@@ -7,7 +7,4 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Life extends Actor
 {
-// variable amountOfLifes = 3;
-// delete life object as variable decreases
-// quit game when amountOfLifes = 0;  
 }

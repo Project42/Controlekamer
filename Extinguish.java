@@ -8,22 +8,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Extinguish extends Intervention
 {
+
     public void addedToWorld(World world)
     {
+        // Dit moet een werkende .GIF zijn
         setImage("firefighter.gif");
     }
     
     public void act()
     {
-        // Toont sprite, na een aantal seconden verdwijnt de class (en gaat er een leven weg)
-        // Verwijdert brand en blijft aanwezig voor een aantal seconden
         checkClicked();
         super.act();
     }
     
-    public void checkClicked() {
-        if (Greenfoot.mouseClicked(this)) {
-            ControlroomWorld world = (ControlroomWorld)getWorld();
+    /** Checks whether object has been clicked
+     * If true, sets the Character variable to FIREFIGHTER
+     */
+    
+    public void checkClicked() 
+    {
+        ControlroomWorld world = (ControlroomWorld)getWorld();
+        if (Greenfoot.mouseClicked(this)) 
+        {
             world.setSelectedCharacter(ControlroomWorld.Character.FIREFIGHTER);
         }
     }

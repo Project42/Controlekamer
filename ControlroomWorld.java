@@ -5,21 +5,23 @@ import greenfoot.*;
  * geïnterveniëerd moeten worden door de speler.
  * 
  * Project 42 
- * 0.01
+ * 0.67
  */
 
 public class ControlroomWorld extends World
 {
     public Score scoreCounter;
     private int spawnTimer = 0; 
-    public int calamityTimer = 0;
     private int spawnLocationX = 0;
     private int spawnLocationY = 0;
-    public int countLifes = 4;
+    public int currentScore = 0;
     
+    // References for Life objects
     private Life life1;
     private Life life2;
     private Life life3;
+    
+    private int countLifes = 4;
     
     public enum Character {
         FIREFIGHTER,
@@ -30,6 +32,7 @@ public class ControlroomWorld extends World
     
     Character selectedCharacter;
     
+    // Getter and setter Character
     public void setSelectedCharacter(Character character) {
         selectedCharacter = character;
     }
@@ -38,20 +41,56 @@ public class ControlroomWorld extends World
         return selectedCharacter;
     }
 
+    // Constructor
     public ControlroomWorld()
     {    
         super(80,80,10); 
         setBackground("background.png");
         addObject(new MenuBar(), 39, 75);
-        addObject(new Fire(), getWidth()/2, getHeight()/2);
         addObject(new Extinguish(), getWidth()/2+30, getHeight()/2);
-        addObject(new Victims(), getWidth()/2+15, getHeight()/2);
-
-        prepare();
         scoreCounter = new Score("Score: ");
         addObject(scoreCounter, 6, 74);
+
+        prepare();
+
+
     }
     
+    /** Checks score to set difficulty over the game */
+    public void checkScore(int score) {
+        if (score < 600) {
+            spawnSomewhere(600);
+        }
+        else if (score >= 1000) {
+            spawnSomewhere(500);
+        }
+        else if (score >= 2000) {
+            spawnSomewhere(400);
+        }
+        else if (score >= 3000) {
+            spawnSomewhere(350);
+        }
+        else if (score >= 4000) {
+            spawnSomewhere(300);
+        }
+        else if (score >= 5000) {
+            spawnSomewhere(250);
+        }
+        else if (score >= 6000) {
+            spawnSomewhere(200);
+        }
+        else if (score >= 7000) {
+            spawnSomewhere(150);
+        }
+        else if (score >= 8000) {
+            spawnSomewhere(100);
+        }
+        else {
+            spawnSomewhere(50);
+        }
+    }
+    
+    /** Prepares the world by adding objects which should be initiated when rendering */
     private void prepare()
     {
         addObject(life1 = new Life(), 77, 74);
@@ -59,15 +98,23 @@ public class ControlroomWorld extends World
         addObject(life3 = new Life(), 69, 74);
     }
     
+    // Getter scoreCounter
     public Score getScoreCounter() {
         return scoreCounter;
     }
     
+    // Random spawn and adds timer
     public void act() {
         spawnTimer++;
-        spawnSomewhere(100);
+        checkScore(scoreCounter.getValue());
+        setCurrentScore();
     }
     
+    public void setCurrentScore() {
+        currentScore = scoreCounter.getValue();
+    }
+
+    /** Sets a random location */
     public void spawnLocation() {
         spawnLocationX = (int)(Math.random()*((64-0)+12));
         spawnLocationY = (int)(Math.random()*((31-0)+12));
@@ -81,6 +128,7 @@ public class ControlroomWorld extends World
          }
     }
         
+    /** Creates a random new object on a random location */
     public void chooseObject (int x) {
         if (x==1) 
         {
@@ -102,6 +150,7 @@ public class ControlroomWorld extends World
         setSpawnTimer(0);
     }
     
+    // Getter and setter spawnTimer
     public void setSpawnTimer(int newSpawnTimer) {
         spawnTimer = newSpawnTimer;
     }
@@ -110,32 +159,29 @@ public class ControlroomWorld extends World
        return spawnTimer;
     }
         
+    /** Checks timer and spawns */
     public void spawnSomewhere(int difficulty) {
         if (getSpawnTimer()>difficulty) 
         {
             spawnLocation();
         }
     }
-
-    public void setCalamityTimer(int newCalamityTimer) {
-        calamityTimer = newCalamityTimer;
-    }
     
-    public int getCalamityTimer() {
-        return calamityTimer;
-    }
-    
+    /** Deletes a life object after a miss */
     public void loseLife() {
         countLifes--;
-    if (countLifes == 3) {
+        if (countLifes == 3) 
+        {
            removeObject(life3);
         }
        
-        else if (countLifes == 2) {
+        else if (countLifes == 2) 
+        {
             removeObject(life2);
         }
         
-        else if (countLifes == 1) {
+        else if (countLifes == 1) 
+        {
             // Game Over
             System.out.println("WAAAAHHHH VERLOREN!");
             removeObject(life1);

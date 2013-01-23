@@ -9,21 +9,26 @@ public class ShutOff extends Intervention
 {
     public void addedToWorld(World world)
     {
+        // Dit moet een werkende .GIF zijn
         setImage("firefighter.gif");
     }
     
     public void act()
     {
-        // Toont sprite, na een aantal seconden verdwijnt de class (en gaat er een leven weg)
-        // Verwijdert brand en blijft aanwezig voor een aantal seconden
         checkClicked();
         super.act();
     }
     
-    public void checkClicked() {
-        if (Greenfoot.mouseClicked(this)) {
+    /** Checks whether object has been clicked
+     * If true, sets the Character variable to POLICE_SHUTOFF
+     */
+    
+    public void checkClicked() 
+    {
+        if (Greenfoot.mouseClicked(this)) 
+        {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            world.setSelectedCharacter(ControlroomWorld.Character.FIREFIGHTER);
+            world.setSelectedCharacter(ControlroomWorld.Character.POLICE_SHUTOFF);
         }
     }
 }

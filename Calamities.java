@@ -22,19 +22,70 @@ import java.util.ArrayList;
 
 public abstract class Calamities extends Actor
 {   
-    private int expireTimer;
-    
+    // Timer for calamities
+    private int expireTimer = 0;
+    private int difficultyScore = 0;
+    // Getter and setter expireTimer
     public void setExpireTimer(int newExpireTimer) 
     {
        expireTimer = newExpireTimer;
+    }
+    
+    public void setDifficultyScore() {
+        ControlroomWorld world = (ControlroomWorld)getWorld();
+        difficultyScore = world.currentScore;
     }
     
     public int getExpireTimer() 
     {
         return expireTimer;
     }
+   
+    /** Checks game progress and removes objects faster upon game progress */
     
-    
+    public int checkDifficulty() {
+        ControlroomWorld world = (ControlroomWorld)getWorld();
+        
+        if(difficultyScore < 600) 
+        {
+            return 600;
+        }
+        else if (difficultyScore >= 600) 
+        {
+            return 500;
+        }
+        else if (difficultyScore >= 2000) 
+        {
+            return 400;
+        }
+        else if (difficultyScore >= 3000) 
+        {
+            return 350;
+        }
+        else if (difficultyScore >= 4000) 
+        {
+            return 300;
+        }
+        else if (difficultyScore >= 5000) 
+        {
+            return 250;
+        }
+        else if (difficultyScore >= 6000) 
+        {
+            return 200;
+        }
+        else if (difficultyScore >= 7000) 
+        {
+            return 150;
+        }
+        else if (difficultyScore >= 8000) 
+        {
+            return 100;
+        }
+        else {
+            return 50;
+        }
+    }
     /** CODE VOOR GIF ANIMATIES */
     
     
@@ -89,6 +140,7 @@ public abstract class Calamities extends Actor
             nextFrame();
         }
         expireTimer++;
+        setDifficultyScore();
     }
     
     /**
