@@ -59,7 +59,7 @@ public class FloodStreet extends Calamities
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
 
-       if (getExpireTimer() > difficulty)
+       if (getExpireTimer() > difficulty && police_shutoff == null)
        {
            world.removeObject(this);
            world.loseLife();

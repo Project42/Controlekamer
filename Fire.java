@@ -22,9 +22,10 @@ public class Fire extends Calamities
         super.act();
         checkClicked();
         checkIfIExpire(checkDifficulty());
+        
         if (extinguisher != null) {
             interventionTimer++;
-            if (interventionTimer > 300) 
+            if (interventionTimer > 200) 
             {
                 ControlroomWorld world = (ControlroomWorld)getWorld();
                 world.removeObject(this);
@@ -62,7 +63,7 @@ public class Fire extends Calamities
     
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
-       if (getExpireTimer() > difficulty)
+       if (getExpireTimer() > difficulty && extinguisher == null)
        {
            world.removeObject(this);
            world.loseLife();

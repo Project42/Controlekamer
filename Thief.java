@@ -11,7 +11,7 @@ public class Thief extends Calamities
     public void addedToWorld(World world)
     {
         // Dit moet een werkende .GIF zijn
-        setImage("flood.gif");
+        setImage("thief.gif");
         setDifficultyScore();
     }
     
@@ -23,9 +23,9 @@ public class Thief extends Calamities
         
         if (police_catchthief != null) {
             interventionTimer++;
+            ControlroomWorld world = (ControlroomWorld)getWorld();
             if (interventionTimer > 300) 
             {
-                ControlroomWorld world = (ControlroomWorld)getWorld();
                 world.removeObject(this);
                 world.removeObject(police_catchthief);
                 world.getScoreCounter().add(50);
@@ -58,7 +58,7 @@ public class Thief extends Calamities
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
 
-       if (getExpireTimer() > difficulty)
+       if (getExpireTimer() > difficulty && police_catchthief == null)
        {
            world.removeObject(this);
            world.loseLife();

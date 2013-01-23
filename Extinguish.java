@@ -17,20 +17,6 @@ public class Extinguish extends Intervention
     
     public void act()
     {
-        checkClicked();
         super.act();
-    }
-    
-    /** Checks whether object has been clicked
-     * If true, sets the Character variable to FIREFIGHTER
-     */
-    
-    public void checkClicked() 
-    {
-        ControlroomWorld world = (ControlroomWorld)getWorld();
-        if (Greenfoot.mouseClicked(this)) 
-        {
-            world.setSelectedCharacter(ControlroomWorld.Character.FIREFIGHTER);
-        }
     }
 }

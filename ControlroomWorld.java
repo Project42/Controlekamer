@@ -43,61 +43,66 @@ public class ControlroomWorld extends World
 
     // Constructor
     public ControlroomWorld()
-    {    
-        super(80,80,10); 
+    {
+        super(80,80,10);
         setBackground("background.png");
+        
+        // Add interface
         addObject(new MenuBar(), 39, 75);
-        addObject(new Extinguish(), getWidth()/2+30, getHeight()/2);
         scoreCounter = new Score("Score: ");
         addObject(scoreCounter, 6, 74);
 
         prepare();
-
-
     }
     
     /** Checks score to set difficulty over the game */
     public void checkScore(int score) {
         if (score < 600) {
-            spawnSomewhere(600);
+            spawnSomewhere(1200);
         }
         else if (score >= 1000) {
-            spawnSomewhere(500);
+            spawnSomewhere(1100);
         }
         else if (score >= 2000) {
-            spawnSomewhere(400);
+            spawnSomewhere(1000);
         }
         else if (score >= 3000) {
-            spawnSomewhere(350);
+            spawnSomewhere(900);
         }
         else if (score >= 4000) {
-            spawnSomewhere(300);
+            spawnSomewhere(800);
         }
         else if (score >= 5000) {
-            spawnSomewhere(250);
+            spawnSomewhere(700);
         }
         else if (score >= 6000) {
-            spawnSomewhere(200);
+            spawnSomewhere(600);
         }
         else if (score >= 7000) {
-            spawnSomewhere(150);
+            spawnSomewhere(500);
         }
         else if (score >= 8000) {
-            spawnSomewhere(100);
+            spawnSomewhere(400);
         }
         else {
-            spawnSomewhere(50);
+            spawnSomewhere(300);
         }
     }
     
     /** Prepares the world by adding objects which should be initiated when rendering */
     private void prepare()
     {
-        addObject(life1 = new Life(), 77, 74);
-        addObject(life2 = new Life(), 73, 74);
-        addObject(life3 = new Life(), 69, 74);
+        addObject(life1 = new Life(), 73, 75);
+        addObject(life2 = new Life(), 69, 75);
+        addObject(life3 = new Life(), 65, 75);
+        
+        // Add menu objects
+        addObject(new Extinguish_Menu(), 20, 75);
+        addObject(new ShutOff_Menu(), 30, 75);
+        addObject(new CatchThief_Menu(), 40, 75);
+        addObject(new Evacuate_Menu(), 50, 75);
     }
-    
+
     // Getter scoreCounter
     public Score getScoreCounter() {
         return scoreCounter;
