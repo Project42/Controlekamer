@@ -50,42 +50,42 @@ public abstract class Calamities extends Actor
         
         if(difficultyScore < 600) 
         {
-            return 600;
+            return 1200;
         }
         else if (difficultyScore >= 600) 
         {
-            return 500;
+            return 1100;
         }
         else if (difficultyScore >= 2000) 
         {
-            return 400;
+            return 1000;
         }
         else if (difficultyScore >= 3000) 
         {
-            return 350;
+            return 900;
         }
         else if (difficultyScore >= 4000) 
         {
-            return 300;
+            return 800;
         }
         else if (difficultyScore >= 5000) 
         {
-            return 250;
+            return 700;
         }
         else if (difficultyScore >= 6000) 
         {
-            return 200;
+            return 600;
         }
         else if (difficultyScore >= 7000) 
         {
-            return 150;
+            return 500;
         }
         else if (difficultyScore >= 8000) 
         {
-            return 100;
+            return 400;
         }
         else {
-            return 50;
+            return 300;
         }
     }
     /** CODE VOOR GIF ANIMATIES */

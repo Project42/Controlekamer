@@ -10,7 +10,7 @@ public class ShutOff extends Intervention
     public void addedToWorld(World world)
     {
         // Dit moet een werkende .GIF zijn
-        setImage("fire.gif");
+        setImage("shut_off_street.gif");
     }
     
     public void act()

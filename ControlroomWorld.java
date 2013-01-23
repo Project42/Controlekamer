@@ -5,12 +5,14 @@ import greenfoot.*;
  * geïnterveniëerd moeten worden door de speler.
  * 
  * Project 42 
- * 0.67
+ * 0.72
  */
 
 public class ControlroomWorld extends World
 {
     public Score scoreCounter;
+    public PoliceUnits policeUnitsCounter;
+    public FirefighterUnits firefighterUnitsCounter;
     private int spawnTimer = 0; 
     private int spawnLocationX = 0;
     private int spawnLocationY = 0;
@@ -50,7 +52,11 @@ public class ControlroomWorld extends World
         // Add interface
         addObject(new MenuBar(), 39, 75);
         scoreCounter = new Score("Score: ");
+        policeUnitsCounter = new PoliceUnits("Politie-eenheden: ");
+        firefighterUnitsCounter = new FirefighterUnits("Brandweer-eenheden: ");
         addObject(scoreCounter, 6, 74);
+        addObject(policeUnitsCounter, 12, 46);
+        addObject(firefighterUnitsCounter, 13, 48);
 
         prepare();
     }
@@ -58,34 +64,34 @@ public class ControlroomWorld extends World
     /** Checks score to set difficulty over the game */
     public void checkScore(int score) {
         if (score < 600) {
-            spawnSomewhere(1200);
-        }
-        else if (score >= 1000) {
-            spawnSomewhere(1100);
-        }
-        else if (score >= 2000) {
-            spawnSomewhere(1000);
-        }
-        else if (score >= 3000) {
-            spawnSomewhere(900);
-        }
-        else if (score >= 4000) {
-            spawnSomewhere(800);
-        }
-        else if (score >= 5000) {
-            spawnSomewhere(700);
-        }
-        else if (score >= 6000) {
             spawnSomewhere(600);
         }
-        else if (score >= 7000) {
+        else if (score >= 1000) {
             spawnSomewhere(500);
         }
-        else if (score >= 8000) {
+        else if (score >= 2000) {
+            spawnSomewhere(450);
+        }
+        else if (score >= 3000) {
             spawnSomewhere(400);
         }
-        else {
+        else if (score >= 4000) {
+            spawnSomewhere(350);
+        }
+        else if (score >= 5000) {
             spawnSomewhere(300);
+        }
+        else if (score >= 6000) {
+            spawnSomewhere(250);
+        }
+        else if (score >= 7000) {
+            spawnSomewhere(200);
+        }
+        else if (score >= 8000) {
+            spawnSomewhere(150);
+        }
+        else {
+            spawnSomewhere(100);
         }
     }
     
@@ -191,5 +197,13 @@ public class ControlroomWorld extends World
             System.out.println("WAAAAHHHH VERLOREN!");
             removeObject(life1);
         }
+    }
+    
+    public PoliceUnits getPoliceUnits() {
+        return policeUnitsCounter;
+    }
+    
+    public FirefighterUnits getFirefighterUnits() {
+        return firefighterUnitsCounter;
     }
 }
