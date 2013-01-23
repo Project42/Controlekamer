@@ -13,6 +13,9 @@ public class ControlroomWorld extends World
     public Score scoreCounter;
     public PoliceUnits policeUnitsCounter;
     public FirefighterUnits firefighterUnitsCounter;
+    public NumberOfDeaths numberOfDeathsCounter;
+    public NumberOfSaved numberOfSavedCounter;
+    
     private int spawnTimer = 0; 
     private int spawnLocationX = 0;
     private int spawnLocationY = 0;
@@ -52,10 +55,15 @@ public class ControlroomWorld extends World
         // Add interface
         addObject(new MenuBar(), 39, 75);
         scoreCounter = new Score("Score: ");
-        policeUnitsCounter = new PoliceUnits("Politie-eenheden: ");
-        firefighterUnitsCounter = new FirefighterUnits("Brandweer-eenheden: ");
+        policeUnitsCounter = new PoliceUnits("Police-units: ");
+        firefighterUnitsCounter = new FirefighterUnits("Firefighter-units:  ");
+        numberOfDeathsCounter = new NumberOfDeaths("Number of deaths: ");
+        numberOfSavedCounter = new NumberOfSaved("Number of saved:  ");
+        
+        addObject(numberOfDeathsCounter, 12, 59);
+        addObject(numberOfSavedCounter, 12, 61);
         addObject(scoreCounter, 6, 74);
-        addObject(policeUnitsCounter, 12, 46);
+        addObject(policeUnitsCounter, 10, 46);
         addObject(firefighterUnitsCounter, 13, 48);
 
         prepare();
@@ -206,4 +214,13 @@ public class ControlroomWorld extends World
     public FirefighterUnits getFirefighterUnits() {
         return firefighterUnitsCounter;
     }
+    
+    public NumberOfDeaths getNumberOfDeathsCounter() {
+        return numberOfDeathsCounter;
+    }
+    
+    public NumberOfSaved getNumberOfSavedCounter() {
+        return numberOfSavedCounter;
+    }
+    
 }

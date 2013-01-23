@@ -44,9 +44,11 @@ public class Thief extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            int objectLocationX = getX()+2;
-            int objectLocationY = getY();
-            world.addObject(police_catchthief = new CatchThief(), objectLocationX, objectLocationY);
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_CATCHTHIEF) {
+                int objectLocationX = getX()+2;
+                int objectLocationY = getY();
+                world.addObject(police_catchthief = new CatchThief(), objectLocationX, objectLocationY);
+            }
         }
     }
     

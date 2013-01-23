@@ -45,9 +45,11 @@ public class Victims extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_EVACUATE) {
             int objectLocationX = getX()+2;
             int objectLocationY = getY();
             world.addObject(police_evacuate = new Evacuate(), objectLocationX, objectLocationY);
+            }
         }
     }
     

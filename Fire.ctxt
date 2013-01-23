@@ -9,4 +9,6 @@ comment2.text=\ Check\ if\ object\ has\ been\ clicked\r\n\ If\ true,\ it\ checks
 comment3.params=difficulty
 comment3.target=void\ checkIfIExpire(int)
 comment3.text=\ Check\ whether\ object\ has\ been\ in\ the\ world\ for\ too\ long\r\n\ If\ true,\ removes\ the\ Fire\ object\ and\ sets\ the\ timer\ back\ to\ 0\r\n\ Difficulty\ argument\ decreases\ when\ progressing\ in\ the\ game,\ making\ objects\ expire\ faster\r\n
-numComments=4
+comment4.params=
+comment4.target=int\ getRandomNumber()
+numComments=5

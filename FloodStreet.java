@@ -13,6 +13,7 @@ public class FloodStreet extends Calamities
         // Dit moet een werkende .GIF zijn
         setImage("flood.gif");
         setDifficultyScore();
+        Greenfoot.playSound("flood.WAV");
     }
     
     public void act()
@@ -45,9 +46,11 @@ public class FloodStreet extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            int objectLocationX = getX()+2;
-            int objectLocationY = getY();
-            world.addObject(police_shutoff = new ShutOff(), objectLocationX, objectLocationY);
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_SHUTOFF) {
+                int objectLocationX = getX()+2;
+                int objectLocationY = getY();
+                world.addObject(police_shutoff = new ShutOff(), objectLocationX, objectLocationY);
+            }
         }
     }
     

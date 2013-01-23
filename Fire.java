@@ -14,6 +14,7 @@ public class Fire extends Calamities
     {
         setImage("fire.gif");
         setDifficultyScore();
+        Greenfoot.playSound("fire.WAV");
     }
     
     public void act()
@@ -31,6 +32,7 @@ public class Fire extends Calamities
                 world.removeObject(this);
                 world.removeObject(extinguisher);
                 world.getScoreCounter().add(50);
+                world.getNumberOfSavedCounter().add(getRandomNumber());
             }
         } else {
             interventionTimer = 0;
@@ -68,8 +70,14 @@ public class Fire extends Calamities
            world.removeObject(this);
            world.loseLife();
            setExpireTimer(0);
+           world.getNumberOfDeathsCounter().add(getRandomNumber());
        }
        
+    }
+    
+    public int getRandomNumber() {
+        int GEEFMIJTERUG = (int) Math.random()*((80-0)+25);
+        return GEEFMIJTERUG;
     }
 }
  
