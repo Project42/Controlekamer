@@ -3,7 +3,7 @@ import greenfoot.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class PoliceUnits extends Actor {
+public class PoliceUnits extends Counter {
     private static final Color textColor = new Color(255, 255, 255);
 
     public int value = 0;
@@ -49,5 +49,5 @@ public class PoliceUnits extends Actor {
         GreenfootImage image = getImage();
         image.clear();
         image.drawString(text + value, 1, 12);
-    }
+     }
 }

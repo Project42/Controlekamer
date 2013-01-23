@@ -3,7 +3,7 @@ import greenfoot.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Score extends Actor {
+public class Score extends Counter {
     private static final Color textColor = new Color(255, 255, 255);
 
     public int value = 0;
@@ -44,10 +44,10 @@ public class Score extends Actor {
     public int getValue() {
         return value;
     }
-
+    
     private void updateImage() {
-        GreenfootImage image = getImage();
-        image.clear();
-        image.drawString(text + value, 1, 12);
+       GreenfootImage image = getImage();
+       image.clear();
+       image.drawString(text + value, 1, 12);
     }
 }

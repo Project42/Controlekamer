@@ -2,7 +2,7 @@ import greenfoot.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class NumberOfDeaths extends Actor {
+public class NumberOfDeaths extends Counter {
     private static final Color textColor = new Color(255, 255, 255);
 
     public int value = 0;
@@ -45,8 +45,8 @@ public class NumberOfDeaths extends Actor {
     }
 
     private void updateImage() {
-        GreenfootImage image = getImage();
-        image.clear();
-        image.drawString(text + value, 1, 12);
+       GreenfootImage image = getImage();
+       image.clear();
+       image.drawString(text + value, 1, 12);
     }
 }

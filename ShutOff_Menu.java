@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ShutOff_Menu extends Actor
+public class ShutOff_Menu extends Menu
 {
     public void addedToWorld(World world)
     {
@@ -15,19 +15,6 @@ public class ShutOff_Menu extends Actor
     
     public void act() 
     {
-        checkClicked();
+        checkClicked(2);
     }    
-    
-    /** Checks whether object has been clicked
-     * If true, sets the Character variable to POLICE_SHUTOFF
-     */
-    
-    public void checkClicked() 
-    {
-        if (Greenfoot.mouseClicked(this)) 
-        {
-            ControlroomWorld world = (ControlroomWorld)getWorld();
-            world.setSelectedCharacter(ControlroomWorld.Character.POLICE_SHUTOFF);
-        }
-    }
 }

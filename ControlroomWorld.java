@@ -5,7 +5,7 @@ import greenfoot.*;
  * geïnterveniëerd moeten worden door de speler.
  * 
  * Project 42 
- * 0.72
+ * 0.80
  */
 
 public class ControlroomWorld extends World
