@@ -10,7 +10,7 @@ public class Evacuate_Menu extends Actor
 {
     public void addedToWorld(World world)
     {
-        setImage("firefighter.png");
+        setImage("evac_vehicle.png");
     }
     
     public void act() 
