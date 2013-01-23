@@ -15,6 +15,10 @@ public class ControlroomWorld extends World
     public FirefighterUnits firefighterUnitsCounter;
     public NumberOfDeaths numberOfDeathsCounter;
     public NumberOfSaved numberOfSavedCounter;
+    public Extinguish_Menu FirefighterMenu;
+    public ShutOff_Menu ShutOffMenu;
+    public Evacuate_Menu EvacuateMenu;
+    public CatchThief_Menu CatchThiefMenu;
     
     private int spawnTimer = 0; 
     private int spawnLocationX = 0;
@@ -111,10 +115,10 @@ public class ControlroomWorld extends World
         addObject(life3 = new Life(), 65, 75);
         
         // Add menu objects
-        addObject(new Extinguish_Menu(), 20, 75);
-        addObject(new ShutOff_Menu(), 30, 75);
-        addObject(new CatchThief_Menu(), 40, 75);
-        addObject(new Evacuate_Menu(), 50, 75);
+        addObject(FirefighterMenu = new Extinguish_Menu(), 20, 75);
+        addObject(ShutOffMenu = new ShutOff_Menu(), 30, 75);
+        addObject(CatchThiefMenu = new CatchThief_Menu(), 40, 75);
+        addObject(EvacuateMenu = new Evacuate_Menu(), 50, 75);
     }
 
     // Getter scoreCounter
@@ -223,4 +227,19 @@ public class ControlroomWorld extends World
         return numberOfSavedCounter;
     }
     
+    public Extinguish_Menu getExtinguishMenu() {
+        return FirefighterMenu;
+    }
+    
+    public ShutOff_Menu getShutOffMenu() {
+        return ShutOffMenu;
+    }
+    
+    public Evacuate_Menu getEvacuateMenu() {
+        return EvacuateMenu;
+    }
+    
+    public CatchThief_Menu getCatchThiefMenu() {
+        return CatchThiefMenu;
+    }
 }
