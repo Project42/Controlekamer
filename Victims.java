@@ -8,6 +8,7 @@ import greenfoot.*;
 
 public class Victims extends Calamities
 {    
+    Evacuate police_evacuate;
     public void addedToWorld(World world)
     {
         // Dit moet een werkende .GIF zijn
@@ -20,6 +21,19 @@ public class Victims extends Calamities
         super.act();
         checkClicked(); 
         checkIfIExpire(checkDifficulty());
+        
+        if (police_evacuate != null) {
+            interventionTimer++;
+            if (interventionTimer > 300) 
+            {
+                ControlroomWorld world = (ControlroomWorld)getWorld();
+                world.removeObject(this);
+                world.removeObject(police_evacuate);
+                world.getScoreCounter().add(50);
+            }
+        } else {
+            interventionTimer = 0;
+        }
     }
     
     /** Check if object has been clicked
@@ -31,11 +45,9 @@ public class Victims extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_EVACUATE)
-            {
-                world.removeObject(this);
-                world.getScoreCounter().add(50);
-            }
+            int objectLocationX = getX()+2;
+            int objectLocationY = getY();
+            world.addObject(police_evacuate = new Evacuate(), objectLocationX, objectLocationY);
         }
     }
     

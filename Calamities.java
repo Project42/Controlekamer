@@ -25,6 +25,8 @@ public abstract class Calamities extends Actor
     // Timer for calamities
     private int expireTimer = 0;
     private int difficultyScore = 0;
+    public int interventionTimer = 0;
+    
     // Getter and setter expireTimer
     public void setExpireTimer(int newExpireTimer) 
     {

@@ -7,6 +7,7 @@ import greenfoot.*;
  */
 public class FloodStreet extends Calamities
 {    
+    ShutOff police_shutoff;
     public void addedToWorld(World world)
     {
         // Dit moet een werkende .GIF zijn
@@ -19,6 +20,20 @@ public class FloodStreet extends Calamities
         super.act();
         checkClicked(); 
         checkIfIExpire(checkDifficulty());
+        
+        if (police_shutoff != null) {
+            interventionTimer++;
+            if (interventionTimer > 300) 
+            {
+                ControlroomWorld world = (ControlroomWorld)getWorld();
+                world.removeObject(this);
+                world.removeObject(police_shutoff);
+                world.getScoreCounter().add(50);
+            }
+        } else {
+            interventionTimer = 0;
+        }
+
     }
     
     /** Check if object has been clicked
@@ -30,16 +45,14 @@ public class FloodStreet extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_SHUTOFF)
-            {
-                world.removeObject(this);
-                world.getScoreCounter().add(50);
-            }
+            int objectLocationX = getX()+2;
+            int objectLocationY = getY();
+            world.addObject(police_shutoff = new ShutOff(), objectLocationX, objectLocationY);
         }
     }
     
     /** Check whether object has been in the world for too long
-     * If true, removes the Fire object and sets the timer back to 0
+     * If true, removes the FloodStreet object and sets the timer back to 0
      * Difficulty argument decreases when progressing in the game, making objects expire faster
      */
     

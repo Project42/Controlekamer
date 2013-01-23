@@ -7,6 +7,7 @@ import greenfoot.*;
  */
 public class Thief extends Calamities
 {
+    CatchThief police_catchthief;
     public void addedToWorld(World world)
     {
         // Dit moet een werkende .GIF zijn
@@ -19,6 +20,19 @@ public class Thief extends Calamities
         super.act();
         checkClicked(); 
         checkIfIExpire(checkDifficulty());
+        
+        if (police_catchthief != null) {
+            interventionTimer++;
+            if (interventionTimer > 300) 
+            {
+                ControlroomWorld world = (ControlroomWorld)getWorld();
+                world.removeObject(this);
+                world.removeObject(police_catchthief);
+                world.getScoreCounter().add(50);
+            }
+        } else {
+            interventionTimer = 0;
+        }
     }
     
     /** Check if object has been clicked
@@ -30,11 +44,9 @@ public class Thief extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_CATCHTHIEF)
-            {
-                world.removeObject(this);
-                world.getScoreCounter().add(50);
-            }
+            int objectLocationX = getX()+2;
+            int objectLocationY = getY();
+            world.addObject(police_catchthief = new CatchThief(), objectLocationX, objectLocationY);
         }
     }
     

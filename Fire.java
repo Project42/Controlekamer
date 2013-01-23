@@ -8,6 +8,8 @@ import greenfoot.*;
 
 public class Fire extends Calamities
 {
+
+    Extinguish extinguisher;
     public void addedToWorld(World world)
     {
         setImage("fire.gif");
@@ -20,6 +22,18 @@ public class Fire extends Calamities
         super.act();
         checkClicked();
         checkIfIExpire(checkDifficulty());
+        if (extinguisher != null) {
+            interventionTimer++;
+            if (interventionTimer > 300) 
+            {
+                ControlroomWorld world = (ControlroomWorld)getWorld();
+                world.removeObject(this);
+                world.removeObject(extinguisher);
+                world.getScoreCounter().add(50);
+            }
+        } else {
+            interventionTimer = 0;
+        }
     }
     
     /** Check if object has been clicked
@@ -33,8 +47,9 @@ public class Fire extends Calamities
             ControlroomWorld world = (ControlroomWorld)getWorld();
             if (world.getSelectedCharacter() == ControlroomWorld.Character.FIREFIGHTER)
             {
-                world.removeObject(this);
-                world.getScoreCounter().add(50);
+                int objectLocationX = getX()+2;
+                int objectLocationY = getY();
+                world.addObject(extinguisher = new Extinguish(), objectLocationX, objectLocationY);
             }
         }
         
