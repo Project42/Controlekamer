@@ -55,8 +55,8 @@ public class ControlroomWorld extends World
         // Add interface
         addObject(new MenuBar(), 39, 75);
         scoreCounter = new Score("Score: ");
-        policeUnitsCounter = new PoliceUnits("Police-units: ");
-        firefighterUnitsCounter = new FirefighterUnits("Firefighter-units:  ");
+        policeUnitsCounter = new PoliceUnits("Policeunits: ");
+        firefighterUnitsCounter = new FirefighterUnits("Firefighterunits:  ");
         numberOfDeathsCounter = new NumberOfDeaths("Number of deaths: ");
         numberOfSavedCounter = new NumberOfSaved("Number of saved:  ");
         
