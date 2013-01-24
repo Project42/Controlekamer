@@ -13,7 +13,7 @@ public class Console extends Actor {
     // Code for adding message
     public void addMessage(String message) {
         messages.add(message);
-        if (messages.size() > 13) messages.remove(0);
+        if (messages.size() > 12) messages.remove(0);
         setImage(renderToImage());
     }
 

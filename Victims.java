@@ -11,7 +11,6 @@ public class Victims extends Calamities
     Evacuate police_evacuate;
     public void addedToWorld(World world)
     {
-        // Dit moet een werkende .GIF zijn
         setImage("peoplethatneedtobeevacuated.gif");
         setDifficultyScore();
     }
@@ -24,11 +23,11 @@ public class Victims extends Calamities
         
         if (police_evacuate != null) {
             interventionTimer++;
-            if (interventionTimer > 300) 
+            if (interventionTimer > 200) 
             {
                 ControlroomWorld world = (ControlroomWorld)getWorld();
                 int NumberOfSaved = (getExpireTimer()/10);
-                int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/20);
+                int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/40);
                 if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
                     world.getNumberOfDeathsCounter().add(NumberOfDeaths);
                     world.getNumberOfSavedCounter().add(NumberOfSaved);

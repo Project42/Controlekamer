@@ -21,6 +21,7 @@ public class ControlroomWorld extends World
     private Evacuate_Menu EvacuateMenu;
     private CatchThief_Menu CatchThiefMenu;
     private Console console;    
+    private Lifes lifes;
     
     Character selectedCharacter;
     
@@ -64,15 +65,15 @@ public class ControlroomWorld extends World
         // Add interface
         addObject(new MenuBar(), 39, 75);
         scoreCounter = new Score("Score: ");
-        policeUnitsCounter = new PoliceUnits("Police units: ");
-        firefighterUnitsCounter = new FirefighterUnits("Firefighter units:  ");
-        numberOfDeathsCounter = new NumberOfDeaths("Number of deaths: ");
-        numberOfSavedCounter = new NumberOfSaved("Number of saved:  ");
-        addObject(numberOfDeathsCounter, 12, 59);
-        addObject(numberOfSavedCounter, 12, 61);
+        policeUnitsCounter = new PoliceUnits("Politie-eenheden: ");
+        firefighterUnitsCounter = new FirefighterUnits("Brandweer-eenheden:   ");
+        numberOfDeathsCounter = new NumberOfDeaths("Aantal gewonde mensen:  ");
+        numberOfSavedCounter = new NumberOfSaved("Aantal geredde mensen:  ");
+        addObject(numberOfDeathsCounter, 15, 59);
+        addObject(numberOfSavedCounter, 15, 61);
         addObject(scoreCounter, 6, 74);
-        addObject(policeUnitsCounter, 10, 46);
-        addObject(firefighterUnitsCounter, 13, 48);
+        addObject(policeUnitsCounter, 12, 46);
+        addObject(firefighterUnitsCounter, 14, 48);
         addObject(console = new Console(), 58, 56);
         addObject(life1 = new Life(), 73, 75);
         addObject(life2 = new Life(), 69, 75);
@@ -81,39 +82,40 @@ public class ControlroomWorld extends World
         addObject(ShutOffMenu = new ShutOff_Menu(), 30, 75);
         addObject(CatchThiefMenu = new CatchThief_Menu(), 40, 75);
         addObject(EvacuateMenu = new Evacuate_Menu(), 50, 75);
+        addObject(lifes = new Lifes(), 68, 65);
     }
 
     /** Checks score to set difficulty over the game */
     public void checkScore(int score) {
-        if (score < 600) {
-            spawnSomewhere(600);
-        }
-        else if (score >= 1000) {
-            spawnSomewhere(500);
-        }
-        else if (score >= 2000) {
-            spawnSomewhere(450);
-        }
-        else if (score >= 3000) {
+        if (score < 300) {
             spawnSomewhere(400);
         }
-        else if (score >= 4000) {
+        else if (score >= 300) {
             spawnSomewhere(350);
         }
-        else if (score >= 5000) {
+        else if (score >= 700) {
             spawnSomewhere(300);
         }
-        else if (score >= 6000) {
+        else if (score >= 1200) {
+            spawnSomewhere(275);
+        }
+        else if (score >= 1700) {
             spawnSomewhere(250);
         }
-        else if (score >= 7000) {
+        else if (score >= 2300) {
+            spawnSomewhere(225);
+        }
+        else if (score >= 3000) {
             spawnSomewhere(200);
         }
-        else if (score >= 8000) {
+        else if (score >= 3800) {
             spawnSomewhere(150);
         }
-        else {
+        else if (score >= 4700) {
             spawnSomewhere(100);
+        }
+        else {
+            spawnSomewhere(50);
         }
     }
 
