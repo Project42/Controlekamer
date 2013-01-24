@@ -15,6 +15,7 @@ public class ShutOff_Menu extends Menu
     
     public void act() 
     {
+        // Checks if object itself has been clicked
         checkClicked(2);
     }    
 }

@@ -6,8 +6,8 @@ import java.awt.Graphics;
 public class FirefighterUnits extends Counter {
     private static final Color textColor = new Color(255, 255, 255);
 
-    public int value = 3;
-    public int target = 3;
+    public int value = 0;
+    public int target = 0;
     private String text;
     private int stringLength;
 

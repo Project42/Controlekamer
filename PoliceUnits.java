@@ -6,8 +6,8 @@ import java.awt.Graphics;
 public class PoliceUnits extends Counter {
     private static final Color textColor = new Color(255, 255, 255);
 
-    public int value = 5;
-    public int target = 5;
+    public int value = 0;
+    public int target = 0;
     private String text;
     private int stringLength;
 

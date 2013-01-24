@@ -10,22 +10,30 @@ import greenfoot.*;
 
 public class ControlroomWorld extends World
 {
-    public Score scoreCounter;
-    public PoliceUnits policeUnitsCounter;
-    public FirefighterUnits firefighterUnitsCounter;
-    public NumberOfDeaths numberOfDeathsCounter;
-    public NumberOfSaved numberOfSavedCounter;
-    public Extinguish_Menu FirefighterMenu;
-    public ShutOff_Menu ShutOffMenu;
-    public Evacuate_Menu EvacuateMenu;
-    public CatchThief_Menu CatchThiefMenu;
-    private Console console;
+    // Controllers for objects
+    private Score scoreCounter;
+    private PoliceUnits policeUnitsCounter;
+    private FirefighterUnits firefighterUnitsCounter;
+    private NumberOfDeaths numberOfDeathsCounter;
+    private NumberOfSaved numberOfSavedCounter;
+    private Extinguish_Menu FirefighterMenu;
+    private ShutOff_Menu ShutOffMenu;
+    private Evacuate_Menu EvacuateMenu;
+    private CatchThief_Menu CatchThiefMenu;
+    private Console console;    
+    
+    Character selectedCharacter;
+    
+    // Variables for all counters
     private int PoliceUnits;
     private int FirefighterUnits;
-
     private int spawnTimer = 0;
+    
+    // Variables for spawnlocation
     private int spawnLocationX = 0;
     private int spawnLocationY = 0;
+    
+    // Variable for score
     public int currentScore = 0;
 
     // References for Life objects
@@ -33,7 +41,10 @@ public class ControlroomWorld extends World
     private Life life2;
     private Life life3;
 
+    // Variable for amount of lifes
     private int countLifes = 4;
+    
+    // Sets backgroundmusic  
     GreenfootSound backgroundMusic = new GreenfootSound("background_music.mp3");
 
     public enum Character {
@@ -42,23 +53,13 @@ public class ControlroomWorld extends World
         POLICE_CATCHTHIEF,
         POLICE_EVACUATE,
     }
-
-    Character selectedCharacter;
-
-    // Getter and setter Character
-    public void setSelectedCharacter(Character character) {
-        selectedCharacter = character;
-    }
-
-    public Character getSelectedCharacter() {
-        return selectedCharacter;
-    }
-
+    
     // Constructor
     public ControlroomWorld()
     {
         super(80,80,10);
         setBackground("background.png");
+        backgroundMusic.playLoop();
 
         // Add interface
         addObject(new MenuBar(), 39, 75);
@@ -67,16 +68,19 @@ public class ControlroomWorld extends World
         firefighterUnitsCounter = new FirefighterUnits("Firefighter units:  ");
         numberOfDeathsCounter = new NumberOfDeaths("Number of deaths: ");
         numberOfSavedCounter = new NumberOfSaved("Number of saved:  ");
-
         addObject(numberOfDeathsCounter, 12, 59);
         addObject(numberOfSavedCounter, 12, 61);
         addObject(scoreCounter, 6, 74);
         addObject(policeUnitsCounter, 10, 46);
         addObject(firefighterUnitsCounter, 13, 48);
-
         addObject(console = new Console(), 58, 56);
-        backgroundMusic.playLoop();
-        prepare();
+        addObject(life1 = new Life(), 73, 75);
+        addObject(life2 = new Life(), 69, 75);
+        addObject(life3 = new Life(), 65, 75);
+        addObject(FirefighterMenu = new Extinguish_Menu(), 20, 75);
+        addObject(ShutOffMenu = new ShutOff_Menu(), 30, 75);
+        addObject(CatchThiefMenu = new CatchThief_Menu(), 40, 75);
+        addObject(EvacuateMenu = new Evacuate_Menu(), 50, 75);
     }
 
     /** Checks score to set difficulty over the game */
@@ -113,30 +117,13 @@ public class ControlroomWorld extends World
         }
     }
 
-    /** Prepares the world by adding objects which should be initiated when rendering */
-    private void prepare()
-    {
-        addObject(life1 = new Life(), 73, 75);
-        addObject(life2 = new Life(), 69, 75);
-        addObject(life3 = new Life(), 65, 75);
-
-        // Add menu objects
-        addObject(FirefighterMenu = new Extinguish_Menu(), 20, 75);
-        addObject(ShutOffMenu = new ShutOff_Menu(), 30, 75);
-        addObject(CatchThiefMenu = new CatchThief_Menu(), 40, 75);
-        addObject(EvacuateMenu = new Evacuate_Menu(), 50, 75);
-    }
-
-    // Getter scoreCounter
-    public Score getScoreCounter() {
-        return scoreCounter;
-    }
-
     // Random spawn and adds timer
+    // Adds policeunits and firefighterunits over time
     public void act() {
         spawnTimer++;
         checkScore(scoreCounter.getValue());
         setCurrentScore();
+        
         if (PoliceUnits == 500) {
             getPoliceUnits().add(1);
             PoliceUnits = 0;
@@ -149,10 +136,6 @@ public class ControlroomWorld extends World
         } else {
             ++FirefighterUnits;
         }
-    }
-
-    public void setCurrentScore() {
-        currentScore = scoreCounter.getValue();
     }
 
     /** Sets a random location */
@@ -169,7 +152,7 @@ public class ControlroomWorld extends World
          }
     }
 
-    /** Creates a random new object on a random location */
+    /** Creates a random new object on a random location, adds console message */
     public void chooseObject (int x) {
         if (x==1)
         {
@@ -195,14 +178,6 @@ public class ControlroomWorld extends World
         setSpawnTimer(0);
     }
 
-    // Getter and setter spawnTimer
-    public void setSpawnTimer(int newSpawnTimer) {
-        spawnTimer = newSpawnTimer;
-    }
-
-    public int getSpawnTimer() {
-       return spawnTimer;
-    }
 
     /** Checks timer and spawns */
     public void spawnSomewhere(int difficulty) {
@@ -232,11 +207,41 @@ public class ControlroomWorld extends World
             removeObject(life1);
         }
     }
-
+    
+    // Method for adding messages to console in the game interface
     public void addConsoleMessage(String message) {
         console.addMessage(message);
     }
+    
+    // Getter and setter Character
+    public void setSelectedCharacter(Character character) {
+        selectedCharacter = character;
+    }
 
+    public Character getSelectedCharacter() {
+        return selectedCharacter;
+    }
+    
+    // Getter scoreCounter
+    public Score getScoreCounter() {
+        return scoreCounter;
+    }
+    
+    // Setter currentScore
+    public void setCurrentScore() {
+        currentScore = scoreCounter.getValue();
+    }
+    
+    // Getter and setter spawnTimer
+    public void setSpawnTimer(int newSpawnTimer) {
+        spawnTimer = newSpawnTimer;
+    }
+
+    public int getSpawnTimer() {
+       return spawnTimer;
+    }
+
+    // Getters units counters
     public PoliceUnits getPoliceUnits() {
         return policeUnitsCounter;
     }
@@ -245,6 +250,7 @@ public class ControlroomWorld extends World
         return firefighterUnitsCounter;
     }
 
+    // Getters statistics counters
     public NumberOfDeaths getNumberOfDeathsCounter() {
         return numberOfDeathsCounter;
     }
@@ -253,6 +259,7 @@ public class ControlroomWorld extends World
         return numberOfSavedCounter;
     }
 
+    // Getters menuobjects
     public Extinguish_Menu getExtinguishMenu() {
         return FirefighterMenu;
     }

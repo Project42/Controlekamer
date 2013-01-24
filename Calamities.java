@@ -32,19 +32,18 @@ public abstract class Calamities extends Actor
     {
        expireTimer = newExpireTimer;
     }
-    
-    public void setDifficultyScore() {
-        ControlroomWorld world = (ControlroomWorld)getWorld();
-        difficultyScore = world.currentScore;
-    }
-    
+     
     public int getExpireTimer() 
     {
         return expireTimer;
     }
    
+    // Sets difficulty
+    public void setDifficultyScore() {
+        ControlroomWorld world = (ControlroomWorld)getWorld();
+        difficultyScore = world.currentScore;
+    }
     /** Checks game progress and removes objects faster upon game progress */
-    
     public int checkDifficulty() {
         ControlroomWorld world = (ControlroomWorld)getWorld();
         
