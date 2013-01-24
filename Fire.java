@@ -29,6 +29,14 @@ public class Fire extends Calamities
             if (interventionTimer > 200) 
             {
                 ControlroomWorld world = (ControlroomWorld)getWorld();
+                int NumberOfSaved = (getExpireTimer()/10);
+                int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/20);
+                
+                if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
+                    world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+                    world.getNumberOfSavedCounter().add(NumberOfSaved);
+                }
+                
                 world.removeObject(this);
                 world.removeObject(extinguisher);
                 world.getScoreCounter().add(50);
@@ -67,10 +75,13 @@ public class Fire extends Calamities
        ControlroomWorld world = (ControlroomWorld)getWorld();
        if (getExpireTimer() > difficulty && extinguisher == null)
        {
+           int NumberOfDeaths = (getExpireTimer()/10); 
+           if (NumberOfDeaths > 0) {
+               world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+            }
            world.removeObject(this);
            world.loseLife();
            setExpireTimer(0);
-           world.getNumberOfDeathsCounter().add(2);
        }
        
     }

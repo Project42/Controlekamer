@@ -27,6 +27,13 @@ public class FloodStreet extends Calamities
             if (interventionTimer > 300) 
             {
                 ControlroomWorld world = (ControlroomWorld)getWorld();
+                int NumberOfSaved = (getExpireTimer()/10);
+                int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/20);
+                if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
+                    world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+                    world.getNumberOfSavedCounter().add(NumberOfSaved);
+                }
+                
                 world.removeObject(this);
                 world.removeObject(police_shutoff);
                 world.getScoreCounter().add(50);
@@ -64,6 +71,10 @@ public class FloodStreet extends Calamities
 
        if (getExpireTimer() > difficulty && police_shutoff == null)
        {
+           int NumberOfDeaths = (getExpireTimer()/10); 
+           if (NumberOfDeaths > 0) {
+               world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+            }
            world.removeObject(this);
            world.loseLife();
            setExpireTimer(0);

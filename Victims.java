@@ -27,6 +27,13 @@ public class Victims extends Calamities
             if (interventionTimer > 300) 
             {
                 ControlroomWorld world = (ControlroomWorld)getWorld();
+                int NumberOfSaved = (getExpireTimer()/10);
+                int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/20);
+                if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
+                    world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+                    world.getNumberOfSavedCounter().add(NumberOfSaved);
+                }
+                
                 world.removeObject(this);
                 world.removeObject(police_evacuate);
                 world.getScoreCounter().add(50);
@@ -46,9 +53,9 @@ public class Victims extends Calamities
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
             if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_EVACUATE) {
-            int objectLocationX = getX()+2;
-            int objectLocationY = getY();
-            world.addObject(police_evacuate = new Evacuate(), objectLocationX, objectLocationY);
+                int objectLocationX = getX()+2;
+                int objectLocationY = getY();
+                world.addObject(police_evacuate = new Evacuate(), objectLocationX, objectLocationY);
             }
         }
     }
@@ -63,6 +70,10 @@ public class Victims extends Calamities
 
        if (getExpireTimer() > difficulty && police_evacuate == null)
        {
+           int NumberOfDeaths = (getExpireTimer()/10); 
+           if (NumberOfDeaths > 0) {
+               world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+           }
            world.removeObject(this);
            world.loseLife();
            setExpireTimer(0);
