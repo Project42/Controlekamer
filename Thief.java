@@ -29,6 +29,8 @@ public class Thief extends Calamities
                 world.removeObject(this);
                 world.removeObject(police_catchthief);
                 world.getScoreCounter().add(50);
+                world.addConsoleMessage("De boeven zijn gearresteerd.");
+                world.getPoliceUnits().add(-1);
             }
         } else {
             interventionTimer = 0;

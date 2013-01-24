@@ -41,6 +41,8 @@ public class Fire extends Calamities
                 world.removeObject(extinguisher);
                 world.getScoreCounter().add(50);
                 world.getPoliceUnits().add(2);
+                world.addConsoleMessage("De brand is geblust.");
+                world.getFirefighterUnits().add(-1);
             }
         } else {
             interventionTimer = 0;

@@ -20,6 +20,8 @@ public class ControlroomWorld extends World
     public Evacuate_Menu EvacuateMenu;
     public CatchThief_Menu CatchThiefMenu;
     private Console console;
+    private int PoliceUnits;
+    private int FirefighterUnits;
 
     private int spawnTimer = 0;
     private int spawnLocationX = 0;
@@ -134,6 +136,18 @@ public class ControlroomWorld extends World
         spawnTimer++;
         checkScore(scoreCounter.getValue());
         setCurrentScore();
+        if (PoliceUnits == 500) {
+            getPoliceUnits().add(1);
+            PoliceUnits = 0;
+        } else {
+            ++PoliceUnits;
+        }
+        if (FirefighterUnits == 800) {
+            getFirefighterUnits().add(1);
+            FirefighterUnits = 0;
+        } else {
+            ++FirefighterUnits;
+        }
     }
 
     public void setCurrentScore() {
@@ -159,23 +173,23 @@ public class ControlroomWorld extends World
         if (x==1)
         {
             addObject(new Fire(), spawnLocationX, spawnLocationY);
-            addConsoleMessage("Vuur");
+            addConsoleMessage("Er is brand ontstaan!");
         }
 
         else if (x==2)
         {
             addObject(new Victims(), spawnLocationX, spawnLocationY);
-            addConsoleMessage("Slachtoffers");
+            addConsoleMessage("Mensen moeten geëvacueerd worden!");
         }
         else if (x==3)
         {
             addObject(new FloodStreet(), spawnLocationX, spawnLocationY);
-            addConsoleMessage("Overstroming");
+            addConsoleMessage("Een straat is overstroomd!");
         }
         else if (x==4)
         {
             addObject(new Thief(),  spawnLocationX, spawnLocationY);
-            addConsoleMessage("Dief");
+            addConsoleMessage("Er wordt geplunderd!");
         }
         setSpawnTimer(0);
     }

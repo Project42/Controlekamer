@@ -37,6 +37,8 @@ public class Victims extends Calamities
                 world.removeObject(this);
                 world.removeObject(police_evacuate);
                 world.getScoreCounter().add(50);
+                world.addConsoleMessage("Het leger heeft de mensen geëvacueerd.");
+                world.getPoliceUnits().add(-1);
             }
         } else {
             interventionTimer = 0;

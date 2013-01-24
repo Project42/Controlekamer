@@ -37,6 +37,8 @@ public class FloodStreet extends Calamities
                 world.removeObject(this);
                 world.removeObject(police_shutoff);
                 world.getScoreCounter().add(50);
+                world.addConsoleMessage("De straat is afgezet.");
+                world.getPoliceUnits().add(-1);
             }
         } else {
             interventionTimer = 0;
