@@ -34,9 +34,24 @@ public class Menu extends Actor
             else if (character == 4) {
                  world.setSelectedCharacter(ControlroomWorld.Character.POLICE_CATCHTHIEF);
              }
-
         }
-
+        
+        if (Greenfoot.isKeyDown("1")) {
+            world.setSelectedCharacter(ControlroomWorld.Character.FIREFIGHTER);
+        }
+        
+        if (Greenfoot.isKeyDown("2")) {
+            world.setSelectedCharacter(ControlroomWorld.Character.POLICE_SHUTOFF);
+        }
+        
+        if (Greenfoot.isKeyDown("3")) {
+             world.setSelectedCharacter(ControlroomWorld.Character.POLICE_CATCHTHIEF);
+        }
+        
+        if (Greenfoot.isKeyDown("4")) {
+             world.setSelectedCharacter(ControlroomWorld.Character.POLICE_EVACUATE);
+        }
+ 
         if (world.getSelectedCharacter() == ControlroomWorld.Character.FIREFIGHTER) {
             world.getExtinguishMenu().setImage("firefighter_glow.png");
             world.getShutOffMenu().setImage(originalShutOff);
