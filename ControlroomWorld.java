@@ -34,6 +34,7 @@ public class ControlroomWorld extends World
     private Life life3;
 
     private int countLifes = 4;
+    GreenfootSound backgroundMusic = new GreenfootSound("background_music.mp3");
 
     public enum Character {
         FIREFIGHTER,
@@ -74,7 +75,7 @@ public class ControlroomWorld extends World
         addObject(firefighterUnitsCounter, 13, 48);
 
         addObject(console = new Console(), 58, 56);
-
+        backgroundMusic.playLoop();
         prepare();
     }
 
