@@ -1,4 +1,4 @@
-import greenfoot.*;
+loseLifeimport greenfoot.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
