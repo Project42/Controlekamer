@@ -12,7 +12,6 @@ public class FloodStreet extends Calamities
     {
         setImage("flood.gif");
         setDifficultyScore();
-        Greenfoot.playSound("flood.WAV");
     }
     
     public void act()

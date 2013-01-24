@@ -14,7 +14,6 @@ public class Fire extends Calamities
     {
         setImage("fire.gif");
         setDifficultyScore();
-        Greenfoot.playSound("fire.WAV");
     }
     
     public void act()

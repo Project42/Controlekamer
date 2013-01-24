@@ -14,7 +14,7 @@ public class Lifes extends Actor
         Font font = img.getFont();      
  
         img.setFont(font);      
-        img.drawString("Health: ", 5, 195);  
+        img.drawString("Levens: ", 5, 195);  
         setImage(img);      
     }   
 }
