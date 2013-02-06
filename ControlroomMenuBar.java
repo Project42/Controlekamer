@@ -6,9 +6,9 @@ import greenfoot.*;
  * Project 42
  */
 
-public class MenuBar extends Actor
+public class ControlroomMenuBar extends Actor
 {
-    public MenuBar(){
+    public ControlroomMenuBar(){
         getImage();
     }
 }

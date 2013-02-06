@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class ShutOff_Menu extends Menu
+public class ControlroomShutOff_Menu extends ControlroomMenuItems
 {
     public void addedToWorld(World world)
     {

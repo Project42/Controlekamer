@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Project 42
  */
 
-public class Extinguish extends Intervention
+public class ControlroomExtinguish extends ControlroomIntervention
 {
 
     public void addedToWorld(World world)

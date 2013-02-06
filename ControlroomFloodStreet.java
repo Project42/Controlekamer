@@ -1,17 +1,16 @@
 import greenfoot.*;
 
 /**
- * Deze mensen moeten geëvacueerd worden door de politie.
+ * Auto's botsen op elkaar bij straten waar teveel water is.
  * 
  * Project 42
  */
-
-public class Victims extends Calamities
+public class ControlroomFloodStreet extends ControlroomCalamities
 {    
-    Evacuate police_evacuate;
+    ControlroomShutOff police_shutoff;
     public void addedToWorld(World world)
     {
-        setImage("peoplethatneedtobeevacuated.gif");
+        setImage("flood.gif");
         setDifficultyScore();
     }
     
@@ -21,11 +20,11 @@ public class Victims extends Calamities
         checkClicked(); 
         checkIfIExpire(checkDifficulty());
         
-        if (police_evacuate != null) {
+        if (police_shutoff != null) {
+            ControlroomWorld world = (ControlroomWorld)getWorld();
             interventionTimer++;
             if (interventionTimer > 200) 
             {
-                ControlroomWorld world = (ControlroomWorld)getWorld();
                 int NumberOfSaved = (getExpireTimer()/10);
                 int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/40);
                 if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
@@ -34,14 +33,14 @@ public class Victims extends Calamities
                 }
                 
                 world.removeObject(this);
-                world.removeObject(police_evacuate);
+                world.removeObject(police_shutoff);
                 world.getScoreCounter().add(50);
-                world.addConsoleMessage("Het leger heeft de mensen geëvacueerd.");
-                world.getPoliceUnits().add(-1);
+                world.addConsoleMessage("De straat is afgezet.");
             }
         } else {
             interventionTimer = 0;
         }
+
     }
     
     /** Check if object has been clicked
@@ -53,28 +52,29 @@ public class Victims extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_EVACUATE) {
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_SHUTOFF) {
                 int objectLocationX = getX()+2;
                 int objectLocationY = getY();
-                world.addObject(police_evacuate = new Evacuate(), objectLocationX, objectLocationY);
+                world.addObject(police_shutoff = new ControlroomShutOff(), objectLocationX, objectLocationY);
+                world.getPoliceUnits().add(-1);
             }
         }
     }
     
     /** Check whether object has been in the world for too long
-     * If true, removes the Fire object and sets the timer back to 0
+     * If true, removes the FloodStreet object and sets the timer back to 0
      * Difficulty argument decreases when progressing in the game, making objects expire faster
      */
     
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
 
-       if (getExpireTimer() > difficulty && police_evacuate == null)
+       if (getExpireTimer() > difficulty && police_shutoff == null)
        {
            int NumberOfDeaths = (getExpireTimer()/10); 
            if (NumberOfDeaths > 0) {
                world.getNumberOfDeathsCounter().add(NumberOfDeaths);
-           }
+            }
            world.removeObject(this);
            world.loseLife();
            setExpireTimer(0);

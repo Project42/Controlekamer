@@ -3,10 +3,10 @@ import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Console extends Actor {
+public class ControlroomConsole extends Actor {
     List<String> messages;
 
-    public Console() {
+    public ControlroomConsole() {
         messages = new ArrayList<String>();
     }
 

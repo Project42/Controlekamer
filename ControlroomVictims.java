@@ -1,16 +1,17 @@
 import greenfoot.*;
 
 /**
- * Dief die probeert te plunderen.
+ * Deze mensen moeten geëvacueerd worden door de politie.
  * 
  * Project 42
  */
-public class Thief extends Calamities
-{
-    CatchThief police_catchthief;
+
+public class ControlroomVictims extends ControlroomCalamities
+{    
+    ControlroomEvacuate police_evacuate;
     public void addedToWorld(World world)
     {
-        setImage("thief.gif");
+        setImage("peoplethatneedtobeevacuated.gif");
         setDifficultyScore();
     }
     
@@ -20,16 +21,22 @@ public class Thief extends Calamities
         checkClicked(); 
         checkIfIExpire(checkDifficulty());
         
-        if (police_catchthief != null) {
+        if (police_evacuate != null) {
             interventionTimer++;
             ControlroomWorld world = (ControlroomWorld)getWorld();
             if (interventionTimer > 200) 
             {
+                int NumberOfSaved = (getExpireTimer()/10);
+                int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/40);
+                if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
+                    world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+                    world.getNumberOfSavedCounter().add(NumberOfSaved);
+                }
+                
                 world.removeObject(this);
-                world.removeObject(police_catchthief);
+                world.removeObject(police_evacuate);
                 world.getScoreCounter().add(50);
-                world.addConsoleMessage("De boeven zijn gearresteerd.");
-                world.getPoliceUnits().add(-1);
+                world.addConsoleMessage("Het leger heeft de mensen geëvacueerd.");
             }
         } else {
             interventionTimer = 0;
@@ -45,10 +52,11 @@ public class Thief extends Calamities
         if (Greenfoot.mouseClicked(this)) 
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_CATCHTHIEF) {
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_EVACUATE) {
                 int objectLocationX = getX()+2;
                 int objectLocationY = getY();
-                world.addObject(police_catchthief = new CatchThief(), objectLocationX, objectLocationY);
+                world.addObject(police_evacuate = new ControlroomEvacuate(), objectLocationX, objectLocationY);
+                world.getPoliceUnits().add(-1);
             }
         }
     }
@@ -61,12 +69,15 @@ public class Thief extends Calamities
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
 
-       if (getExpireTimer() > difficulty && police_catchthief == null)
+       if (getExpireTimer() > difficulty && police_evacuate == null)
        {
+           int NumberOfDeaths = (getExpireTimer()/10); 
+           if (NumberOfDeaths > 0) {
+               world.getNumberOfDeathsCounter().add(NumberOfDeaths);
+           }
            world.removeObject(this);
            world.loseLife();
            setExpireTimer(0);
        }
     }
 }
-

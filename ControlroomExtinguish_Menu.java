@@ -1,19 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Evacuate_Menu here.
+ * Toont sprite in het menu en is klikbaar
  * 
  */
-public class Evacuate_Menu extends Menu
+public class ControlroomExtinguish_Menu extends ControlroomMenuItems
 {
     public void addedToWorld(World world)
     {
-        setImage("evac_vehicle.png");
+        setImage("firefighter.png");
     }
     
     public void act() 
     {
         // Checks if object itself has been clicked
-        checkClicked(3);
-    }
+        checkClicked(1);
+    }    
 }

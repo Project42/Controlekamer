@@ -5,6 +5,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * Project 42
  */
-public class Life extends Actor
+public class ControlroomLife extends Actor
 {
 }

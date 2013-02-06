@@ -11,17 +11,17 @@ import greenfoot.*;
 public class ControlroomWorld extends World
 {
     // Controllers for objects
-    private Score scoreCounter;
-    private PoliceUnits policeUnitsCounter;
-    private FirefighterUnits firefighterUnitsCounter;
-    private NumberOfDeaths numberOfDeathsCounter;
-    private NumberOfSaved numberOfSavedCounter;
-    private Extinguish_Menu FirefighterMenu;
-    private ShutOff_Menu ShutOffMenu;
-    private Evacuate_Menu EvacuateMenu;
-    private CatchThief_Menu CatchThiefMenu;
-    private Console console;    
-    private Lifes lifes;
+    private ControlroomScore scoreCounter;
+    private ControlroomPoliceUnits policeUnitsCounter;
+    private ControlroomFirefighterUnits firefighterUnitsCounter;
+    private ControlroomNumberOfDeaths numberOfDeathsCounter;
+    private ControlroomNumberOfSaved numberOfSavedCounter;
+    private ControlroomExtinguish_Menu FirefighterMenu;
+    private ControlroomShutOff_Menu ShutOffMenu;
+    private ControlroomEvacuate_Menu EvacuateMenu;
+    private ControlroomCatchThief_Menu CatchThiefMenu;
+    private ControlroomConsole console;    
+    private ControlroomLifes lifes;
     
     Character selectedCharacter;
     
@@ -38,9 +38,9 @@ public class ControlroomWorld extends World
     public int currentScore = 0;
 
     // References for Life objects
-    private Life life1;
-    private Life life2;
-    private Life life3;
+    private ControlroomLife life1;
+    private ControlroomLife life2;
+    private ControlroomLife life3;
 
     // Variable for amount of lifes
     private int countLifes = 4;
@@ -63,26 +63,26 @@ public class ControlroomWorld extends World
         backgroundMusic.playLoop();
 
         // Add interface
-        addObject(new MenuBar(), 39, 75);
-        scoreCounter = new Score("Score: ");
-        policeUnitsCounter = new PoliceUnits("Politie-eenheden: ");
-        firefighterUnitsCounter = new FirefighterUnits("Brandweer-eenheden:   ");
-        numberOfDeathsCounter = new NumberOfDeaths("Aantal gewonde mensen:  ");
-        numberOfSavedCounter = new NumberOfSaved("Aantal geredde mensen:  ");
+        addObject(new ControlroomMenuBar(), 39, 75);
+        scoreCounter = new ControlroomScore("Score: ");
+        policeUnitsCounter = new ControlroomPoliceUnits("Politie-eenheden: ");
+        firefighterUnitsCounter = new ControlroomFirefighterUnits("Brandweer-eenheden:   ");
+        numberOfDeathsCounter = new ControlroomNumberOfDeaths("Aantal gewonde mensen:  ");
+        numberOfSavedCounter = new ControlroomNumberOfSaved("Aantal geredde mensen:  ");
         addObject(numberOfDeathsCounter, 15, 59);
         addObject(numberOfSavedCounter, 15, 61);
         addObject(scoreCounter, 6, 74);
         addObject(policeUnitsCounter, 12, 46);
         addObject(firefighterUnitsCounter, 14, 48);
-        addObject(console = new Console(), 58, 56);
-        addObject(life1 = new Life(), 73, 75);
-        addObject(life2 = new Life(), 69, 75);
-        addObject(life3 = new Life(), 65, 75);
-        addObject(FirefighterMenu = new Extinguish_Menu(), 20, 75);
-        addObject(ShutOffMenu = new ShutOff_Menu(), 30, 75);
-        addObject(CatchThiefMenu = new CatchThief_Menu(), 40, 75);
-        addObject(EvacuateMenu = new Evacuate_Menu(), 50, 75);
-        addObject(lifes = new Lifes(), 68, 65);
+        addObject(console = new ControlroomConsole(), 58, 56);
+        addObject(life1 = new ControlroomLife(), 73, 75);
+        addObject(life2 = new ControlroomLife(), 69, 75);
+        addObject(life3 = new ControlroomLife(), 65, 75);
+        addObject(FirefighterMenu = new ControlroomExtinguish_Menu(), 20, 75);
+        addObject(ShutOffMenu = new ControlroomShutOff_Menu(), 30, 75);
+        addObject(CatchThiefMenu = new ControlroomCatchThief_Menu(), 40, 75);
+        addObject(EvacuateMenu = new ControlroomEvacuate_Menu(), 50, 75);
+        addObject(lifes = new ControlroomLifes(), 68, 65);
     }
 
     /** Checks score to set difficulty over the game */
@@ -126,7 +126,7 @@ public class ControlroomWorld extends World
         checkScore(scoreCounter.getValue());
         setCurrentScore();
         
-        if (PoliceUnits == 500) {
+        if (PoliceUnits == 300) {
             getPoliceUnits().add(1);
             PoliceUnits = 0;
         } else {
@@ -145,7 +145,7 @@ public class ControlroomWorld extends World
         spawnLocationX = (int)(Math.random()*((64-0)+12));
         spawnLocationY = (int)(Math.random()*((31-0)+12));
 
-        if (getObjectsAt(spawnLocationX,spawnLocationY,Calamities.class).isEmpty())
+        if (getObjectsAt(spawnLocationX,spawnLocationY,ControlroomCalamities.class).isEmpty())
         {
             if(spawnLocationX > 3 && spawnLocationY > 5)
             {
@@ -158,23 +158,23 @@ public class ControlroomWorld extends World
     public void chooseObject (int x) {
         if (x==1)
         {
-            addObject(new Fire(), spawnLocationX, spawnLocationY);
+            addObject(new ControlroomFire(), spawnLocationX, spawnLocationY);
             addConsoleMessage("Er is brand ontstaan!");
         }
 
         else if (x==2)
         {
-            addObject(new Victims(), spawnLocationX, spawnLocationY);
+            addObject(new ControlroomVictims(), spawnLocationX, spawnLocationY);
             addConsoleMessage("Mensen moeten geëvacueerd worden!");
         }
         else if (x==3)
         {
-            addObject(new FloodStreet(), spawnLocationX, spawnLocationY);
+            addObject(new ControlroomFloodStreet(), spawnLocationX, spawnLocationY);
             addConsoleMessage("Een straat is overstroomd!");
         }
         else if (x==4)
         {
-            addObject(new Thief(),  spawnLocationX, spawnLocationY);
+            addObject(new ControlroomThief(),  spawnLocationX, spawnLocationY);
             addConsoleMessage("Er wordt geplunderd!");
         }
         setSpawnTimer(0);
@@ -225,7 +225,7 @@ public class ControlroomWorld extends World
     }
     
     // Getter scoreCounter
-    public Score getScoreCounter() {
+    public ControlroomScore getScoreCounter() {
         return scoreCounter;
     }
     
@@ -244,37 +244,37 @@ public class ControlroomWorld extends World
     }
 
     // Getters units counters
-    public PoliceUnits getPoliceUnits() {
+    public ControlroomPoliceUnits getPoliceUnits() {
         return policeUnitsCounter;
     }
 
-    public FirefighterUnits getFirefighterUnits() {
+    public ControlroomFirefighterUnits getFirefighterUnits() {
         return firefighterUnitsCounter;
     }
 
     // Getters statistics counters
-    public NumberOfDeaths getNumberOfDeathsCounter() {
+    public ControlroomNumberOfDeaths getNumberOfDeathsCounter() {
         return numberOfDeathsCounter;
     }
 
-    public NumberOfSaved getNumberOfSavedCounter() {
+    public ControlroomNumberOfSaved getNumberOfSavedCounter() {
         return numberOfSavedCounter;
     }
 
     // Getters menuobjects
-    public Extinguish_Menu getExtinguishMenu() {
+    public ControlroomExtinguish_Menu getExtinguishMenu() {
         return FirefighterMenu;
     }
 
-    public ShutOff_Menu getShutOffMenu() {
+    public ControlroomShutOff_Menu getShutOffMenu() {
         return ShutOffMenu;
     }
 
-    public Evacuate_Menu getEvacuateMenu() {
+    public ControlroomEvacuate_Menu getEvacuateMenu() {
         return EvacuateMenu;
     }
 
-    public CatchThief_Menu getCatchThiefMenu() {
+    public ControlroomCatchThief_Menu getCatchThiefMenu() {
         return CatchThiefMenu;
     }
 }

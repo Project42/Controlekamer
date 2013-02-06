@@ -3,9 +3,9 @@ import java.awt.*;
 /**
  * Schrijft levens in de menubar
  **/
-public class Lifes extends Actor
+public class ControlroomLifes extends Actor
 {
-    public Lifes() {  
+    public ControlroomLifes() {  
         GreenfootImage img = new GreenfootImage(200, 200);     
         img.setColor(new Color(255,255,255));    
         Font font = img.getFont();      

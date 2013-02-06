@@ -5,5 +5,5 @@ import java.awt.Graphics;
 
 /** Sorteert counters */
 
-public class Counter extends Actor {
+public class ControlroomCounter extends Actor {
 }

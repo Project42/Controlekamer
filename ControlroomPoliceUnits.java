@@ -3,7 +3,7 @@ import greenfoot.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class FirefighterUnits extends Counter {
+public class ControlroomPoliceUnits extends ControlroomCounter {
     private static final Color textColor = new Color(255, 255, 255);
 
     public int value = 0;
@@ -11,11 +11,11 @@ public class FirefighterUnits extends Counter {
     private String text;
     private int stringLength;
 
-    public FirefighterUnits() {
+    public ControlroomPoliceUnits() {
         this("");
     }
 
-    public FirefighterUnits(String prefix) {
+    public ControlroomPoliceUnits(String prefix) {
         text = prefix;
         stringLength = (text.length() + 2) * 10;
 
@@ -46,8 +46,8 @@ public class FirefighterUnits extends Counter {
     }
 
     private void updateImage() {
-       GreenfootImage image = getImage();
-       image.clear();
-       image.drawString(text + value, 1, 12);
-    }
+        GreenfootImage image = getImage();
+        image.clear();
+        image.drawString(text + value, 1, 12);
+     }
 }

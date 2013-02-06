@@ -1,4 +1,4 @@
-import greenfoot.*;
+import greenfoot.*; 
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,81 +15,17 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Beheert alle calamiteiten.
+ * Beheert alle interventies.
  * 
  * Project 42
  */
 
-public abstract class Calamities extends Actor
-{   
-    // Timer for calamities
-    private int expireTimer = 0;
-    private int difficultyScore = 0;
-    public int interventionTimer = 0;
-    
-    // Getter and setter expireTimer
-    public void setExpireTimer(int newExpireTimer) 
-    {
-       expireTimer = newExpireTimer;
-    }
-     
-    public int getExpireTimer() 
-    {
-        return expireTimer;
-    }
-   
-    // Sets difficulty
-    public void setDifficultyScore() {
-        ControlroomWorld world = (ControlroomWorld)getWorld();
-        difficultyScore = world.currentScore;
-    }
-    /** Checks game progress and removes objects faster upon game progress */
-    public int checkDifficulty() {
-        ControlroomWorld world = (ControlroomWorld)getWorld();
-        
-        if(difficultyScore < 300) 
-        {
-            return 1000;
-        }
-        else if (difficultyScore >= 300) 
-        {
-            return 900;
-        }
-        else if (difficultyScore >= 700) 
-        {
-            return 800;
-        }
-        else if (difficultyScore >= 1200) 
-        {
-            return 700;
-        }
-        else if (difficultyScore >= 1700) 
-        {
-            return 600;
-        }
-        else if (difficultyScore >= 2300) 
-        {
-            return 500;
-        }
-        else if (difficultyScore >= 3000) 
-        {
-            return 400;
-        }
-        else if (difficultyScore >= 3800) 
-        {
-            return 300;
-        }
-        else if (difficultyScore >= 4700) 
-        {
-            return 200;
-        }
-        else {
-            return 100;
-        }
-    }
+public abstract class ControlroomIntervention extends Actor
+{
     /** CODE VOOR GIF ANIMATIES */
-    
-    
+
+
+
     /** The images used in the animation. */
     private GreenfootImage[] images;
     /** The delay between each frame. */
@@ -136,12 +72,9 @@ public abstract class Calamities extends Actor
      */
     public void act()
     {
-        if(time+delay[currentIndex]<=System.currentTimeMillis()) 
-        {
+        if(time+delay[currentIndex]<=System.currentTimeMillis()) {
             nextFrame();
         }
-        expireTimer++;
-        setDifficultyScore();
     }
     
     /**

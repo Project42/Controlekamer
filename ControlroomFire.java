@@ -1,47 +1,51 @@
-import greenfoot.*;
+import greenfoot.*; 
 
 /**
- * Auto's botsen op elkaar bij straten waar teveel water is.
+ * Door kortsluiting ontstaat brand
  * 
  * Project 42
  */
-public class FloodStreet extends Calamities
-{    
-    ShutOff police_shutoff;
+
+public class ControlroomFire extends ControlroomCalamities
+{
+
+    ControlroomExtinguish extinguisher;
     public void addedToWorld(World world)
     {
-        setImage("flood.gif");
+        setImage("fire.gif");
         setDifficultyScore();
     }
     
     public void act()
     {
+        // Toont sprite, na een aantal seconden verdwijnt de class (en gaat er een leven weg)
         super.act();
-        checkClicked(); 
+        checkClicked();
         checkIfIExpire(checkDifficulty());
         
-        if (police_shutoff != null) {
-            interventionTimer++;
+        if (extinguisher != null) {
+            
+            ControlroomWorld world = (ControlroomWorld)getWorld();
             if (interventionTimer > 200) 
             {
-                ControlroomWorld world = (ControlroomWorld)getWorld();
                 int NumberOfSaved = (getExpireTimer()/10);
                 int NumberOfDeaths = ((checkDifficulty() - getExpireTimer())/40);
+                
                 if (NumberOfDeaths > 0 && NumberOfSaved > 0) {
                     world.getNumberOfDeathsCounter().add(NumberOfDeaths);
                     world.getNumberOfSavedCounter().add(NumberOfSaved);
                 }
                 
                 world.removeObject(this);
-                world.removeObject(police_shutoff);
+                world.removeObject(extinguisher);
                 world.getScoreCounter().add(50);
-                world.addConsoleMessage("De straat is afgezet.");
-                world.getPoliceUnits().add(-1);
+                world.addConsoleMessage("De brand is geblust.");
             }
-        } else {
+            
+            interventionTimer++;
+        }  else {
             interventionTimer = 0;
         }
-
     }
     
     /** Check if object has been clicked
@@ -50,26 +54,28 @@ public class FloodStreet extends Calamities
      */
     
     public void checkClicked() {
-        if (Greenfoot.mouseClicked(this)) 
+        if (Greenfoot.mouseClicked(this))
         {
             ControlroomWorld world = (ControlroomWorld)getWorld();
-            if (world.getSelectedCharacter() == ControlroomWorld.Character.POLICE_SHUTOFF) {
+            if (world.getSelectedCharacter() == ControlroomWorld.Character.FIREFIGHTER)
+            {
                 int objectLocationX = getX()+2;
                 int objectLocationY = getY();
-                world.addObject(police_shutoff = new ShutOff(), objectLocationX, objectLocationY);
+                world.addObject(extinguisher = new ControlroomExtinguish(), objectLocationX, objectLocationY);
+                world.getFirefighterUnits().add(-1);
             }
         }
+        
     }
     
     /** Check whether object has been in the world for too long
-     * If true, removes the FloodStreet object and sets the timer back to 0
+     * If true, removes the Fire object and sets the timer back to 0
      * Difficulty argument decreases when progressing in the game, making objects expire faster
      */
     
     public void checkIfIExpire(int difficulty) {
        ControlroomWorld world = (ControlroomWorld)getWorld();
-
-       if (getExpireTimer() > difficulty && police_shutoff == null)
+       if (getExpireTimer() > difficulty && extinguisher == null)
        {
            int NumberOfDeaths = (getExpireTimer()/10); 
            if (NumberOfDeaths > 0) {
@@ -79,5 +85,7 @@ public class FloodStreet extends Calamities
            world.loseLife();
            setExpireTimer(0);
        }
+       
     }
 }
+ 

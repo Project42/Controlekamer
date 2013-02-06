@@ -5,7 +5,7 @@ import greenfoot.*;
  * 
  * Project 42
  */
-public class CatchThief extends Intervention
+public class ControlroomCatchThief extends ControlroomIntervention
 {
     public void addedToWorld(World world)
     {

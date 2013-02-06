@@ -4,7 +4,7 @@ import greenfoot.*;
  * Bevat alle menuitems
  * 
  */
-public class Menu extends Actor
+public class ControlroomMenuItems extends Actor
 {
     /** Checks if object has been clicked or pressed */
     public void checkClicked(int character) 

@@ -6,7 +6,7 @@ import greenfoot.*;
  * Project 42
 
  */
-public class Evacuate extends Intervention
+public class ControlroomEvacuate extends ControlroomIntervention
 {
     public void addedToWorld(World world)
     {

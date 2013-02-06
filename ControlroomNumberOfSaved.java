@@ -2,7 +2,7 @@ import greenfoot.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class NumberOfDeaths extends Counter {
+public class ControlroomNumberOfSaved extends ControlroomCounter {
     private static final Color textColor = new Color(255, 255, 255);
 
     public int value = 0;
@@ -10,11 +10,11 @@ public class NumberOfDeaths extends Counter {
     private String text;
     private int stringLength;
 
-    public NumberOfDeaths() {
+    public ControlroomNumberOfSaved() {
         this("");
     }
 
-    public NumberOfDeaths(String prefix) {
+    public ControlroomNumberOfSaved(String prefix) {
         text = prefix;
         stringLength = (text.length() + 2) * 10;
 

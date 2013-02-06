@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class CatchThief_Menu here.
  * 
  */
-public class CatchThief_Menu extends Menu
+public class ControlroomCatchThief_Menu extends ControlroomMenuItems
 {
     public void addedToWorld(World world)
     {

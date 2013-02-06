@@ -1,9 +1,8 @@
 import greenfoot.*;
-
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class PoliceUnits extends Counter {
+public class ControlroomNumberOfDeaths extends ControlroomCounter {
     private static final Color textColor = new Color(255, 255, 255);
 
     public int value = 0;
@@ -11,11 +10,11 @@ public class PoliceUnits extends Counter {
     private String text;
     private int stringLength;
 
-    public PoliceUnits() {
+    public ControlroomNumberOfDeaths() {
         this("");
     }
 
-    public PoliceUnits(String prefix) {
+    public ControlroomNumberOfDeaths(String prefix) {
         text = prefix;
         stringLength = (text.length() + 2) * 10;
 
@@ -46,8 +45,8 @@ public class PoliceUnits extends Counter {
     }
 
     private void updateImage() {
-        GreenfootImage image = getImage();
-        image.clear();
-        image.drawString(text + value, 1, 12);
-     }
+       GreenfootImage image = getImage();
+       image.clear();
+       image.drawString(text + value, 1, 12);
+    }
 }
